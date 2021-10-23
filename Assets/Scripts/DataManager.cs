@@ -20,7 +20,15 @@ public class DataManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        LoadColor();
+        LoadAll();
+    }
+
+    private void OnDestroy()
+    {
+        if(playerName != "")
+        {
+            SaveAll();
+        }
     }
 
     [System.Serializable]
@@ -42,7 +50,7 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(Application.persistentDataPath + "/bricksavefile.json", json);
     }
 
-    public void LoadColor()
+    public void LoadAll()
     {
         string path = Application.persistentDataPath + "/bricksavefile.json";
         if (File.Exists(path))
@@ -53,6 +61,11 @@ public class DataManager : MonoBehaviour
             playerName = data.playerName;
             highName = data.highName;
             highScore = data.highScore;
+        } else
+        {
+            playerName = "";
+            highName = "";
+            highScore = 0;
         }
     }
 }

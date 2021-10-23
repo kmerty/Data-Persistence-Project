@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -13,16 +14,17 @@ using UnityEditor;
 [DefaultExecutionOrder(1000)]
 public class MenuUIHandler : MonoBehaviour
 {
-    public GameObject iField;
+    public TextMeshProUGUI iField, pHolder, hScore;
 
     public void SetPlayerName()
     {
-        //DataManager.Instance.playerName = inputName;
-        Debug.Log("Eingabe: " + iField.text);
+        DataManager.Instance.playerName = iField.text;
+        //Debug.Log("Eingabe: " + iField.text);
     }
     private void Start()
     {
-        
+        pHolder.text = DataManager.Instance.playerName;
+        hScore.text = "Highscore: " + DataManager.Instance.highScore;
     }
 
     public void StartGame()
@@ -32,7 +34,7 @@ public class MenuUIHandler : MonoBehaviour
 
     public void Exit()
     {
-        //MainManager.Instance.SaveColor();
+        //DataManager.Instance.SaveAll();
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
@@ -40,14 +42,5 @@ public class MenuUIHandler : MonoBehaviour
 #endif
     }
 
-    public void SaveColorClicked()
-    {
-        //MainManager.Instance.SaveColor();
-    }
-
-    public void LoadColorClicked()
-    {
-        //MainManager.Instance.LoadColor();
-        //ColorPicker.SelectColor(MainManager.Instance.TeamColor);
-    }
+    
 }
