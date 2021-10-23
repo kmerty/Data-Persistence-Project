@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,13 +13,13 @@ using UnityEditor;
 [DefaultExecutionOrder(1000)]
 public class MenuUIHandler : MonoBehaviour
 {
-    
+    public GameObject iField;
 
-    public void NewColorSelected(Color color)
+    public void SetPlayerName()
     {
-        //MainManager.Instance.TeamColor = color;
+        //DataManager.Instance.playerName = inputName;
+        Debug.Log("Eingabe: " + iField.text);
     }
-    
     private void Start()
     {
         
